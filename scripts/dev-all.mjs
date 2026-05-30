@@ -23,9 +23,37 @@ const children = processes.map(({ name, command, args }) => {
   return child;
 });
 
+let shuttingDown = false;
 const shutdown = () => {
-  children.forEach((child) => child.kill('SIGINT'));
-  process.exit(0);
+  if (shuttingDown) return;
+  shuttingDown = true;
+
+  const alive = children.filter((child) => child.exitCode === null);
+  if (alive.length === 0) {
+    process.exit(0);
+    return;
+  }
+
+  let remaining = alive.length;
+  const onExit = () => {
+    remaining -= 1;
+    if (remaining === 0) {
+      process.exit(0);
+    }
+  };
+
+  alive.forEach((child) => {
+    child.once('exit', onExit);
+    child.kill('SIGINT');
+  });
+
+  setTimeout(() => {
+    alive.forEach((child) => {
+      if (child.exitCode === null) child.kill('SIGTERM');
+    });
+  }, 5000);
+
+  setTimeout(() => process.exit(0), 8000);
 };
 
 process.on('SIGINT', shutdown);

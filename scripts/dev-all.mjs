@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
 
 const SIGTERM_FALLBACK_DELAY_MS = 5000;
 const FORCE_EXIT_DELAY_MS = 8000;
@@ -16,7 +17,19 @@ const processes = [
   },
 ];
 
-const children = processes.map(({ name, command, args }) => {
+const runnableProcesses = processes.filter(({ name, args }) => {
+  if (name !== 'minecraft-backend') return true;
+
+  const entrypoint = args[0];
+  if (existsSync(entrypoint)) return true;
+
+  console.warn(
+    `Skipping minecraft-backend: ${entrypoint} does not exist yet.`,
+  );
+  return false;
+});
+
+const children = runnableProcesses.map(({ name, command, args }) => {
   const child = spawn(command, args, { stdio: 'inherit', shell: process.platform === 'win32' });
   child.on('exit', (code) => {
     if (code !== 0) {

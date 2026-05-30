@@ -1,21 +1,31 @@
-# Next.js template
+# MineGuardian Monorepo
 
-This is a Next.js template with shadcn/ui.
+## Structure
 
-## Adding components
+- `apps/web` — Next.js + Clerk + Convex frontend
+- `apps/minecraft-backend` — Flask + Socket.IO backend (migration target)
+- `packages/ui` — shared UI components
+- `packages/shared` — shared contracts/types
+- `packages/config` — shared configuration packages
+- `docs` — architecture and migration notes
+- `scripts` — repo-level development helpers
 
-To add components to your app, run the following command:
+## Development
 
 ```bash
-npx shadcn@latest add button
+pnpm install --config.minimumReleaseAge=0
+pnpm approve-builds --all
+pnpm dev:web
 ```
 
-This will place the ui components in the `components` directory.
+Run both apps:
 
-## Using components
+```bash
+pnpm dev:all
+```
 
-To use the components in your app, import them as follows:
+Validate required env variables:
 
-```tsx
-import { Button } from "@/components/ui/button";
+```bash
+pnpm env:check
 ```

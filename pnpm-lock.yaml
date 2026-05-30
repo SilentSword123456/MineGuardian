@@ -6,7 +6,9 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  apps/web:
     dependencies:
       '@clerk/nextjs':
         specifier: ^7.4.2
@@ -81,6 +83,12 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+
+  packages/config: {}
+
+  packages/shared: {}
+
+  packages/ui: {}
 
 packages:
 

@@ -4,6 +4,7 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import ConvexClientProvider from '@/components/ConvexClientProvider'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,6 +33,7 @@ export default function RootLayout({
         <ConvexClientProvider>{children}</ConvexClientProvider>
       </ClerkProvider>
       <Analytics />
+      <SpeedInsights />
       </body>
       </html>
   )

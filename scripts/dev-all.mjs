@@ -1,5 +1,8 @@
 import { spawn } from 'node:child_process';
 
+const SIGTERM_FALLBACK_DELAY_MS = 5000;
+const FORCE_EXIT_DELAY_MS = 8000;
+
 const processes = [
   {
     name: 'web',
@@ -51,9 +54,9 @@ const shutdown = () => {
     alive.forEach((child) => {
       if (child.exitCode === null) child.kill('SIGTERM');
     });
-  }, 5000);
+  }, SIGTERM_FALLBACK_DELAY_MS);
 
-  setTimeout(() => process.exit(0), 8000);
+  setTimeout(() => process.exit(0), FORCE_EXIT_DELAY_MS);
 };
 
 process.on('SIGINT', shutdown);

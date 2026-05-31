@@ -10,12 +10,12 @@ import type {
   ServerSummary,
 } from "@/lib/server-contracts";
 
-const CONTROL_PLANE_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_CONTROL_PLANE_URL;
+const CONTROL_PLANE_BASE_URL = process.env.MINEGUARDIAN_BACKEND_URL;
 
 async function backendFetch<T>(path: string, init?: RequestInit): Promise<T> {
   if (!CONTROL_PLANE_BASE_URL) {
     throw new Error(
-      "NEXT_PUBLIC_BACKEND_CONTROL_PLANE_URL is not configured. Falling back to mock control-plane responses.",
+      "MINEGUARDIAN_BACKEND_URL is not configured.",
     );
   }
 

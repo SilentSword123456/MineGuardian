@@ -16,6 +16,14 @@ const SAMPLE_LOGS = [
   "[INFO] Autosave completed",
 ];
 
+function createLogId() {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 export function ServerLogsStream() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
 
@@ -24,7 +32,7 @@ export function ServerLogsStream() {
       const message = SAMPLE_LOGS[Math.floor(Math.random() * SAMPLE_LOGS.length)];
       setLogs((previous) => {
         const next: LogEntry = {
-          id: crypto.randomUUID(),
+          id: createLogId(),
           message,
           createdAt: new Date().toISOString(),
         };

@@ -13,7 +13,7 @@ export default async function Home() {
           <p className="text-sm text-slate-300">
             Sign in with Clerk to access server status and lifecycle actions.
           </p>
-          <SignInButton mode="modal">
+          <SignInButton mode="redirect">
             <button className="rounded-md bg-sky-500 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-sky-400">
               Sign in
             </button>

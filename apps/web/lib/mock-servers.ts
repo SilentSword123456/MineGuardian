@@ -3,7 +3,7 @@ import type {
   ServerLifecycleAction,
   ServerResourceSnapshot,
   ServerSummary,
-} from "@workspace/shared";
+} from "@mineguardian/shared";
 
 export const mockServerSummaries: ServerSummary[] = [
   {

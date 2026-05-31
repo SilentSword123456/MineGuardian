@@ -1,9 +1,9 @@
 "use client";
 
 import { useActionState, useMemo, useState } from "react";
-import { Button } from "@workspace/ui";
+import { Button } from "@mineguardian/ui";
 import { triggerServerAction } from "@/lib/actions";
-import type { ServerLifecycleAction } from "@workspace/shared";
+import type { ServerLifecycleAction } from "@mineguardian/shared";
 
 const AVAILABLE_ACTIONS: ServerLifecycleAction[] = [
   "install",

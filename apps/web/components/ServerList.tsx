@@ -1,4 +1,4 @@
-import { Badge } from "@workspace/ui";
+import { Badge } from "@mineguardian/ui";
 import { fetchServerSummaries } from "@/lib/backend-client";
 import { SERVER_STATUS_LABELS } from "@/lib/server-contracts";
 

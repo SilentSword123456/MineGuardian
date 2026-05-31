@@ -4,7 +4,7 @@ import type {
   ServerActionResponse,
   ServerResourceSnapshot,
   ServerSummary,
-} from "@workspace/shared";
+} from "@mineguardian/shared";
 
 export type {
   ApiErrorResponse,

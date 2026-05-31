@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@workspace/ui";
+import { Card, CardContent, CardHeader, CardTitle } from "@mineguardian/ui";
 import { ServerControlPanel } from "@/components/ServerControlPanel";
 import { ServerList } from "@/components/ServerList";
 import { ServerLogsStream } from "@/components/ServerLogsStream";
